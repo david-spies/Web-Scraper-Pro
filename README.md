@@ -7,7 +7,7 @@ BeautifulSoup is suitable for users who only need to scrape static HTML content 
 
 Selenium is the better choice for Scraping Dynamically Loaded Content from websites that load content using JavaScript. 
 
-# Prerequisites
+## Prerequisites
 
 Web Scraper Pro should run on most Windows machines with very few dependencies. 
 
@@ -30,8 +30,8 @@ Web Scraper Pro should run on most Windows machines with very few dependencies.
 * Custom Scraping Logic: If the user inputs a custom expression, the application will use it for scraping via the selected method.
 * Unique Functionality: The code supports scraping using predefined tags with BeautifulSoup and Selenium, along with the ability to save the scraped data in various formats.
 
-# Example Selenium Expression:
-# By ID
+## Example Selenium Expression:
+## By ID
 * element = driver.find_element_by_id('element_id')
 
 * Nested Tags Selection: Checkboxes for common HTML tags to enable or disable scraping of these nested tags.
