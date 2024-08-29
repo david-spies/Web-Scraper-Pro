@@ -29,14 +29,13 @@ Web Scraper Pro should run on most Windows machines with very few dependencies.
 * Custom Expression Input: The GUI includes a drop-down menu, and text box that allows users to manually input a Selenium expression.
 * Custom Scraping Logic: If the user inputs a custom expression, the application will use it for scraping via the selected method.
 * Unique Functionality: The code supports scraping using predefined tags with BeautifulSoup and Selenium, along with the ability to save the scraped data in various formats.
-
-# Example Selenium Expression:
-# By ID
-* element = driver.find_element_by_id('element_id')
-
-* Nested Tags Selection: Checkboxes for common HTML tags (<p>, <h1>, <h2>, <div>, <a>) to enable or disable scraping of these nested tags.
+* Nested Tags Selection: Checkboxes for common HTML tags to enable or disable scraping of these nested tags.
 * Dynamic Data Extraction: The application dynamically extracts text from only the tags selected by the user.
 * Selection of Nested Tags allows users to customize their scraping to include or exclude specific types of content, making the tool more flexible and user-friendly.
+
+# Example Selenium Expression:
+    By ID
+* element = driver.find_element_by_id('element_id')
 
 ## Exporting Data:
  - CSV: Using Python's built-in csv module.
