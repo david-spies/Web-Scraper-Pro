@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import requests
@@ -52,17 +53,16 @@ class WebScraperApp:
 
         # Custom scraping with Selenium
         self.custom_label = tk.Label(root, text="Find Elements:", bg="#eaedfa")
-        self.custom_method_var = tk.StringVar(value="find_elements_by_class_name")
+        self.custom_method_var = tk.StringVar(value="By.CLASS_NAME")
         self.custom_method_menu = tk.OptionMenu(root, self.custom_method_var, 
-                                                "find_elements_by_class_name",
-                                                "find_elements_by_css_selector",
-                                                "find_elements_by_id",
-                                                "find_elements_by_link_text",
-                                                "find_elements_by_name",
-                                                "find_elements_by_partial_link_text",
-                                                "find_elements_by_tag_name",
-                                                "find_elements_by_xpath",
-                                                "find_elements")
+                                                "By.CLASS_NAME",
+                                                "By.CSS_SELECTOR",
+                                                "By.ID",
+                                                "By.LINK_TEXT",
+                                                "By.NAME",
+                                                "By.PARTIAL_LINK_TEXT",
+                                                "By.TAG_NAME",
+                                                "By.XPATH")
         
         self.instructions_label = tk.Label(root, text="Input an Expression:", bg="#eaedfa")
         self.custom_expr_entry = tk.Entry(root, width=50)
@@ -139,17 +139,16 @@ class WebScraperApp:
                     extracted_data.append(element.get_text())
 
         elif method == "Selenium":
-            chrome_options = Options()
-            chrome_options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-            service = Service(executable_path="C:\\webdrivers\\chromedriver.exe")  # Path to the updated ChromeDriver
-            driver = webdriver.Chrome(service=service, options=chrome_options)
+            # Initialize ChromeDriver
+            driver = self.init_driver()
             driver.get(url)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             extracted_data = []
 
             if custom_expr:
-                # Use the custom expression entered by the user
-                elements = getattr(driver, custom_method)(custom_expr)
+                # Use the custom expression entered by the user with By class
+                by_method = getattr(By, custom_method.split(".")[1])
+                elements = driver.find_elements(by_method, custom_expr)
                 for element in elements:
                     extracted_data.append(element.text)
             else:
@@ -165,6 +164,18 @@ class WebScraperApp:
             driver.quit()
 
         self.save_data(extracted_data, output_format)
+
+    def init_driver(self):
+        # Configure Chrome options
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")  # Run in headless mode
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--no-sandbox")
+
+        # Specify the path to the ChromeDriver executable
+        service = Service(executable_path="C:\\webdrivers\\chromedriver.exe")
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        return driver
 
     def save_data(self, data, output_format):
         if output_format == "CSV":
