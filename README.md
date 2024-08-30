@@ -33,7 +33,7 @@ Web Scraper Pro should run on most Windows machines with very few dependencies.
 * Dynamic Data Extraction: The application dynamically extracts text from only the tags selected by the user.
 * Selection of Nested Tags allows users to customize their scraping to include or exclude specific types of content, making the tool more flexible and user-friendly.
 
-# Example Selenium Expression:
+## Example Selenium Expression:
     By ID
 * element = driver.find_element_by_id('element_id')
 
