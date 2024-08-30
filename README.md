@@ -7,7 +7,7 @@ BeautifulSoup is suitable for users who only need to scrape static HTML content 
 
 Selenium is the better choice for Scraping Dynamically Loaded Content from websites that load content using JavaScript. 
 
-# Prerequisites
+## Prerequisites
 
 Web Scraper Pro should run on most Windows machines with very few dependencies. 
 
@@ -35,7 +35,7 @@ Web Scraper Pro should run on most Windows machines with very few dependencies.
 
 ## Example Selenium Expression:
     By ID
-* element = driver.find_element_by_id('element_id')
+* driver.find_element(By.ID, "element_id")
 
 ## Exporting Data:
  - CSV: Using Python's built-in csv module.
@@ -64,11 +64,11 @@ Web Scraper Pro should run on most Windows machines with very few dependencies.
     - Install Chrome.
     - Download and install the chromedriver.
 
-* Update the paths in the code to point to chrome.exe and chromedriver.exe
-* NOTE - these paths may differ on your machine and OS.
+* Update the path in the code to point to chromedriver.exe
+* NOTE - this path may differ on your machine and OS.
 
-  - chrome_options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-  - service = Service(executable_path="C:\\webdrivers\\chromedriver.exe")
+## Specify the path to the ChromeDriver executable
+    - service = Service(executable_path="C:\\webdrivers\\chromedriver.exe")
 
 Built with python and Tkinter GUI library.
 
